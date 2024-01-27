@@ -1,12 +1,10 @@
-# To create a web application using Dash that resembles the uploaded webpage, with a catalog as the main part and login/signup at the top right, you can use the following Python code as a starting point:
-
 import dash
 from dash import html, dcc
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
 # Initialize the Dash app
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
 # Define the app layout
