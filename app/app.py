@@ -20,7 +20,7 @@ card = dbc.Card(
             ]
         ),
     ],
-    style={"width": "18rem"},
+    style={"width": "16rem", 'margin-left': '10px'},
 )
 
 # Define the app layout
@@ -70,9 +70,9 @@ app.layout = html.Div([
                     {'label': '3 Bedrooms', 'value': '4'},
                     # ... [rest of your options] ...
                 ], 
-                placeholder="Select the type of apartment",
+                placeholder="Type of apartment",
                 className='filter-dropdown',
-                style={'height': '30px', 'width': '250px'}),
+                style={'height': '30px', 'width': '200px'}),
             # ... [rest of your filter code] ...
         ], className='filter-section'),
     ], className='main-content'),
