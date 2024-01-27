@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lost and Found Concordia</title>
+    <title>ReLease</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -33,25 +33,25 @@
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
-        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
-        import { getDatabase, update, ref } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+        // import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+        // import { getDatabase, update, ref } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyClvdDtpSfKhzz1ePlQl62GsDt6McUffD4",
-            authDomain: "lost-and-found-concordia.firebaseapp.com",
-            projectId: "lost-and-found-concordia",
-            storageBucket: "lost-and-found-concordia.appspot.com",
-            messagingSenderId: "64397139852",
-            appId: "1:64397139852:web:457c51e7d9373f533bc0a9",
-            measurementId: "G-BY09LBKX21"
-        };
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyClvdDtpSfKhzz1ePlQl62GsDt6McUffD4",
+        //     authDomain: "lost-and-found-concordia.firebaseapp.com",
+        //     projectId: "lost-and-found-concordia",
+        //     storageBucket: "lost-and-found-concordia.appspot.com",
+        //     messagingSenderId: "64397139852",
+        //     appId: "1:64397139852:web:457c51e7d9373f533bc0a9",
+        //     measurementId: "G-BY09LBKX21"
+        // };
 
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const database = getDatabase(app);
-        const auth = getAuth();
+        // const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+        // const database = getDatabase(app);
+        // const auth = getAuth();
 
         document.getElementById('login').addEventListener('click', (e) => {
             e.preventDefault(); // Prevent the form from submitting

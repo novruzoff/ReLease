@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReLease</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <header>
+        <h1>ReLease</h1>
+    </header>
+
+    <section>
+        <h2>Release That Lease!</h2>
+        <p class="subtitle">Please sign up to post.</p>
+    </section>
+
+    <div class="container">
+
+        <form id="signupForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" id="signup" name="signup_submit" value="Sign up" />
+        </form>
+
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+
+    </div>
+
+    <script type="module">
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+        // import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+        // import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyClvdDtpSfKhzz1ePlQl62GsDt6McUffD4",
+        //     authDomain: "lost-and-found-concordia.firebaseapp.com",
+        //     projectId: "lost-and-found-concordia",
+        //     storageBucket: "lost-and-found-concordia.appspot.com",
+        //     messagingSenderId: "64397139852",
+        //     appId: "1:64397139852:web:457c51e7d9373f533bc0a9",
+        //     measurementId: "G-BY09LBKX21"
+        // };
+
+        // const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+        // const database = getDatabase(app);
+        // const auth = getAuth();
+
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevents the default form submission behavior
+
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var username = document.getElementById('username').value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user; // Move this line up
+                    // Signed in
+                    set(ref(database, 'users/' + user.uid), {
+                        username: username,
+                        email: email
+                    });
+
+                    alert('User created.');
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        });
+    </script>
+
+</body>
+
+</html>
