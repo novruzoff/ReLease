@@ -49,7 +49,7 @@ app.layout = html.Div([
         html.Div([
             html.H2("Filters", className='filter-title'),
             dcc.Dropdown(
-                id='room-dropdown',
+                id='room-dropdown', 
                 options=[
                     {'label': 'Studio', 'value': '1'},
                     {'label': '1 Bedroom', 'value': '2'},
@@ -58,8 +58,8 @@ app.layout = html.Div([
                     # ... [rest of your options] ...
                 ],
                 placeholder="Select the type of apartment",
-                className='filter-dropdown'
-            ),
+                className='filter-dropdown',
+                style={'height': '30px', 'width': '250px'}),
             # ... [rest of your filter code] ...
         ], className='filter-section'),
     ], className='main-content')])
@@ -84,12 +84,6 @@ def update_catalog(selected_rooms):
         ], className='catalog-item')
         for _ in range(10)  # Replace with actual number of listings
     ]
-
-# Append external CSS
-app.css.append_css({
-    'external_url': 'https://codepen.io/chriddyp/pen/bWLwgP.css'
-})
-
 
 # Run the app
 if __name__ == '__main__':

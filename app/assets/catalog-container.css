@@ -1,4 +1,8 @@
 /* Main content layout with flex */
+body {
+    font-family: Arial, sans-serif; /* This is an example of a web-safe font */
+}
+
 .main-content {
     display: flex;
     justify-content: space-between;
