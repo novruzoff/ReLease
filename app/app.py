@@ -1,20 +1,33 @@
-# To create a web application using Dash that resembles the uploaded webpage, with a catalog as the main part and login/signup at the top right, you can use the following Python code as a starting point:
-
 import dash
 from dash import html, dcc
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
 # Initialize the Dash app
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+card = dbc.Card(
+    [
+        dbc.CardImg(src="/assets/placeholder286x180.png", top=True),  # Make sure the image path is correct
+        dbc.CardBody(
+            [
+                html.H4("Title", className="card-title"),
+                html.P(
+                    "Description",
+                    className="card-text",
+                ),
+                dbc.Button("See more", color="primary"),
+            ]
+        ),
+    ],
+    style={"width": "16rem", 'margin-left': '10px'},
+)
 
 # Define the app layout
 app.layout = html.Div([
     # Top bar with Login and Sign Up
     html.Div([
         html.Div([
-            html.H1('ReLease.ca', className='title'),
             # Other header content can go here
         ], className='header-left'),
         html.Div([
@@ -56,13 +69,14 @@ app.layout = html.Div([
                     {'label': '2 Bedrooms', 'value': '3'},
                     {'label': '3 Bedrooms', 'value': '4'},
                     # ... [rest of your options] ...
-                ],
-                placeholder="Select the type of apartment",
+                ], 
+                placeholder="Type of apartment",
                 className='filter-dropdown',
-                style={'height': '30px', 'width': '250px'}),
+                style={'height': '30px', 'width': '200px'}),
             # ... [rest of your filter code] ...
         ], className='filter-section'),
-    ], className='main-content')])
+    ], className='main-content'),
+],className='main-content', style={'margin-top': '100px'})
 
 
 # Define callback to populate catalog items
@@ -77,11 +91,8 @@ def update_catalog(selected_rooms):
     # You would replace this with your actual data retrieval and processing.
     return [
         html.Div([
-            html.Img(src='path-to-image.jpg', className='catalog-image'),  # Replace with actual image paths
-            html.H3("Title"),
-            html.P("Description"),
-            html.P("Price: 1400 CA$/month"),
-        ], className='catalog-item')
+            card  # Add the card to the layout
+        ], className='card-container')
         for _ in range(10)  # Replace with actual number of listings
     ]
 
