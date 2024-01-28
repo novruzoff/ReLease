@@ -26,7 +26,7 @@ links = dbc.Nav(
                         dbc.NavLink(
                             "Sign up",
                             active=True,
-                            href="/assets/signup.html",
+                            href="/sign_up",
                             target="_blank",
                         ),
                         className="ms-2",
