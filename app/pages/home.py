@@ -2,6 +2,8 @@ import dash
 from dash import Input, Output, html, callback
 import dash_bootstrap_components as dbc
 from server import functions as f
+import dash_mantine_components as dmc
+from layout import layout as com
 
 dash.register_page(__name__, path="/", title="ReLease", name="ReLease")
 
@@ -9,34 +11,85 @@ dash.register_page(__name__, path="/", title="ReLease", name="ReLease")
 layout = dbc.Container(
     [
         html.H1("Welcome!"),
-        html.Div("Browse our catalog of listings, from Montrealers to Montrealers"),
-        html.Div(id="cards"),
+        dbc.Row(
+            dbc.Col(
+                html.Div(
+                    "Browse our catalog of listings, from Montrealers to Montrealers"
+                )
+            ), class_name='mb-4'
+        ),
+        com.grid,
     ]
 )
 
-@callback(Output("cards", "children"), [Input("cards", "children")])
+
+@callback(Output("grid", "children"), [Input("grid", "children")])
 def update_catalog(cards):
+    """
+    Updates the catalog with new cards created from documents.
+
+    This function retrieves all documents from a data source, creates a card for each document,
+    and adds these cards to the catalog. The cards are then returned to be displayed in the UI.
+
+    Args:
+        cards (list): A list of existing cards in the catalog.
+
+    Returns:
+        list: A list of cards created from the documents.
+    """
     cards = []
     for doc in f.get_all_documents():
         print(doc)
-        card = dbc.Card(
-            [
-                dbc.CardImg(src=doc['image'], top=True),
-                dbc.CardBody(
-                    [
-                        html.H4(doc["title"], className="card-title"),
-                        html.H5(doc["location"], className="card-text"),
-                        html.P(
-                            doc["description"],
-                            className="card-text",
-                        ),
-                        dbc.Button("See more", color="info"), # add link to the individual listing page
-                    ]
-                ),
-            ],
-            style={"width": "18rem"},
-            color="secondary",
-            inverse=True,
-        )
+        card = create_card(doc)
+
         cards.append(card)
     return cards
+
+
+def create_card(doc) -> dmc.Card:
+    """
+    Create a Mantine Card component based on the given document.
+
+    Args:
+        doc (dict): The document containing information for the card.
+
+    Returns:
+        dmc.Card: The Mantine Card component.
+    """
+    man = dmc.Card(
+        children=[
+            dmc.CardSection(
+                dmc.Image(
+                    src=doc["image"],
+                    height=160,
+                )
+            ),
+            dmc.Group(
+                [
+                    dmc.Text(doc["title"], weight=500),
+                    dmc.Badge("On Sale", color="red", variant="light"),
+                ],
+                position="apart",
+                mt="md",
+                mb="xs",
+            ),
+            dmc.Text(
+                doc["description"],
+                size="sm",
+                color="dimmed",
+            ),
+            dmc.Button(
+                "View listing",
+                variant="light",
+                color="blue",
+                fullWidth=True,
+                mt="md",
+                radius="md",
+            ),
+        ],
+        withBorder=True,
+        shadow="sm",
+        radius="md",
+        style={"width": 350},
+    )
+    return man

@@ -1,5 +1,9 @@
 from dash import html
 import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
+import dash_mantine_components as dmc
+
+grid = dmc.SimpleGrid(id="grid", cols=3, spacing='lg', children=[])
 
 links = dbc.Nav(
     dbc.Row(
@@ -87,17 +91,5 @@ navbar = dbc.Navbar(
     dark=True,
 )
 
-
-card = dbc.Card(
-    children=[
-        dbc.CardImg(
-            src="https://storage.cloud.google.com/release_bucket/images/10.jpg",  # temp
-            top=True,
-        ),
-        # card_body,
-    ],
-    color="secondary",
-    inverse=True,
-)
 
 filter_menu = dbc.Container([])
