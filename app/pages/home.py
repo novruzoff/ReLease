@@ -13,7 +13,7 @@ Imports:
     layout.layout as com: The layout for the page.
 """
 import dash
-from dash import Input, Output, html, callback
+from dash import Input, Output, html, callback, State
 import dash_bootstrap_components as dbc
 from server import functions as f
 import dash_mantine_components as dmc
@@ -62,7 +62,18 @@ def update_catalog(cards):
 # def view_listing(n_clicks):
     # return n_clicks
     
-
+# @callback(Output("store", "data"),
+#           [Input("view-listing-btn", "n_clicks"), Input("view-listing-btn", "href")],
+#           [State("store", "data")])
+# def store_id(n_clicks, href, data):
+    
+#     id = href.split('/')[-1]
+#     data = data or {'id': 0}
+#     data['id'] = id
+#     print(id)
+#     print(data)
+#     return data
+    
 def create_card(doc) -> dmc.Card:
     """
     Create a Mantine Card component based on the given document.
@@ -96,13 +107,13 @@ def create_card(doc) -> dmc.Card:
                 color="dimmed",
             ),
             dmc.Button(
-                dmc.NavLink(label="View listing", href='/listing/{}'.format(doc['_id']), variant='light'),#change
+                dmc.NavLink(id="view-listing-btn",label="View listing", href='/listing/{}'.format(doc['_id']), variant='light'),#change
                 variant="light",
                 color="blue",
                 fullWidth=True,
                 mt="md",
                 radius="md",
-                id="view-listing-btn",
+                # id="view-listing-btn",
             ),
         ],
         withBorder=True,
@@ -111,3 +122,15 @@ def create_card(doc) -> dmc.Card:
         style={"width": 350},
     )
     return man
+
+@callback(Output("store", "data"),
+          [Input("view-listing-btn", "href")],    )
+def store_id(href):
+    data = {}
+    if href is not None:
+        id = href.split('/')[-1]
+        # data = data or {'id': 0}
+        data['id'] = id
+        print(id)
+        print(data)
+        return data
