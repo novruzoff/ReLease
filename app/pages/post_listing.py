@@ -121,7 +121,7 @@ layout = html.Div(
                                 [
                                     dbc.Label('Description'),
                                     dbc.Textarea(
-                                        className="mlb-3", placeholder="A Textarea"
+                                        className="mlb-3", placeholder="Briefly describe your listing"
                                     )
                                 ], style={'marginLeft': '10px', 'marginTop': '10px'}
                             )
