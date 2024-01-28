@@ -63,7 +63,7 @@ navbar = dbc.Navbar(
                     [  
                         dbc.Col(
                             dbc.NavbarBrand(
-                                html.Img(src="/assets/company_name.png", height="40px")
+                                html.Img(src="/assets/mainlogo.png", height="60px")
                             )
                         ),
                     ],
