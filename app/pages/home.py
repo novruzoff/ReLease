@@ -1,3 +1,17 @@
+"""
+This module defines the home page for the ReLease web application.
+
+Functions:
+    update_catalog(cards): Retrieves all documents from a data source, creates a card for each 
+    document, and adds these cards to the catalog.
+
+Imports:
+    dash: The core Dash backend.
+    dash_bootstrap_components as dbc: Components from the Dash Bootstrap library.
+    server.functions as f: Functions for performing CRUD operations on the MongoDB database.
+    dash_mantine_components as dmc: Additional components from the Dash Mantine library.
+    layout.layout as com: The layout for the page.
+"""
 import dash
 from dash import Input, Output, html, callback
 import dash_bootstrap_components as dbc
@@ -14,7 +28,7 @@ layout = dbc.Container(
         dbc.Row(
             dbc.Col(
                 html.Div(
-                    "Browse our catalog of listings, from Montrealers to Montrealers"
+                    "Browse our catalog of leases, made for Montrealers by Montrealers"
                 )
             ), class_name='mb-4'
         ),

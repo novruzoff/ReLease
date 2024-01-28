@@ -1,3 +1,6 @@
+"""
+This module initializes and runs the Dash application for the ReLease web application.
+"""
 import dash
 from dash import html
 import dash_bootstrap_components as dbc
