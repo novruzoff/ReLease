@@ -25,7 +25,7 @@ def connect():
     Returns:
         pymongo.collection.Collection: The collection object representing the collection.
     """
-    client = MongoClient(URI, server_api=ServerApi("1"))
+    client = MongoClient(URI, server_api=ServerApi("1"), tlsAllowInvalidCertificates=True)
     # Connect to the database
     db = client["ReLease"]
     # Get a collection from the database
