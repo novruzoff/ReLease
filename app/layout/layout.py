@@ -11,6 +11,19 @@ links = dbc.Nav(
                 [
                     dbc.NavItem(
                         dbc.NavLink(
+                            "Post a Listing",
+                            active=True,
+                            href="/post_listing",
+                        ),
+                        className="ms-2",
+                    ),
+                ],
+                width="auto",
+            ),
+            dbc.Col(
+                [
+                    dbc.NavItem(
+                        dbc.NavLink(
                             "Sign up",
                             active=True,
                             href="/signup",
