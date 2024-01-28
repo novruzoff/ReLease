@@ -13,6 +13,7 @@ Functions:
 """
 
 from pymongo.mongo_client import MongoClient
+from bson.objectid import ObjectId 
 from pymongo.server_api import ServerApi
 
 URI = "mongodb+srv://user1:mchacks123@release0.dg5ey5q.mongodb.net/?retryWrites=true&w=majority"
@@ -46,5 +47,17 @@ def get_all_documents():
 # Count the number of documents in a collection
 
 # Get a single document from a collection
+def get_document(l):
+    """
+    Get a single document from a collection.
 
-# Query for a single document from a collection
+    Returns:
+        dict: A dictionary representing the document.
+    """
+    obj = ObjectId(oid=l)
+    x = get_all_documents()
+    for doc in x:
+        if doc['_id'] == obj:
+            print(doc)
+            return doc
+
