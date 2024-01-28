@@ -32,7 +32,7 @@
  }
  
  header {
-     background-color: #db4c4c;
+     background-color: #4484EC;
      color: #fff;
      padding: 20px;
      text-align: center;
@@ -69,13 +69,13 @@
  }
  
  input[type="submit"] {
-     background-color: #db4c4c;
+     background-color: #4484EC;
      color: #fff;
      cursor: pointer;
  }
  
  input[type="submit"]:hover {
-     background-color: #d88181;
+     background-color: #4484EC;
  }
  
  p {
@@ -83,7 +83,7 @@
  }
  
  a {
-     color: #db4c4c;
+     color: #4484EC;
      text-decoration: none;
  }
  
