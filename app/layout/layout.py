@@ -1,7 +1,6 @@
 from dash import html
 import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
-import dash_mantine_components as dmc
 
 grid = dmc.SimpleGrid(id="grid", cols=3, spacing='lg', children=[])
 
