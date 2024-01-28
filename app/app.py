@@ -4,7 +4,11 @@ import dash_bootstrap_components as dbc
 from layout import layout as com
 
 # Initialize the Dash app
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LITERA, dbc.icons.FONT_AWESOME], use_pages=True)
+app = dash.Dash(
+    __name__,
+    external_stylesheets=[dbc.themes.LITERA, dbc.icons.FONT_AWESOME],
+    use_pages=True,
+)
 
 
 # Define the app layout
