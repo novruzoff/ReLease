@@ -53,12 +53,15 @@ def update_catalog(cards):
     """
     cards = []
     for doc in f.get_all_documents():
-        print(doc)
         card = create_card(doc)
 
         cards.append(card)
     return cards
 
+# @callback(Output("listing_id", "children"), [Input("view-listing-btn", "n_clicks")])
+# def view_listing(n_clicks):
+    # return n_clicks
+    
 
 def create_card(doc) -> dmc.Card:
     """
@@ -93,12 +96,13 @@ def create_card(doc) -> dmc.Card:
                 color="dimmed",
             ),
             dmc.Button(
-                "View listing",
+                dmc.NavLink(label="View listing", href='/listing/{}'.format(doc['_id']), variant='light'),#change
                 variant="light",
                 color="blue",
                 fullWidth=True,
                 mt="md",
                 radius="md",
+                id="view-listing-btn",
             ),
         ],
         withBorder=True,
