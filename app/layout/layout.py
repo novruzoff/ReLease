@@ -30,7 +30,7 @@ links = dbc.Nav(
             ),
             dbc.Col(
                 dbc.NavItem(
-                    dbc.NavLink("About", active=True, href="#", disabled=True),
+                    dbc.NavLink("About", active=True, href="/about"),
                     className="ms-2",
                 ),
                 width="auto",
