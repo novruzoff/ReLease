@@ -26,7 +26,7 @@ links = dbc.Nav(
                         dbc.NavLink(
                             "Sign up",
                             active=True,
-                            href="/signup",
+                            href="/sign_up",
                         ),
                         className="ms-2",
                     ),
@@ -38,7 +38,7 @@ links = dbc.Nav(
                     dbc.NavLink(
                         "Login",
                         active=True,
-                        href="/login",
+                        href="/log_in",
                     ),
                     className="ms-2",
                 ),
