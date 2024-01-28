@@ -6,13 +6,13 @@ from layout import layout as com
 
 dash.register_page(__name__, path='/about', title='About', name='About')
 
-about_app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+# about_app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Define the layout for the about page
 layout = html.Div([
     dbc.Container(fluid=True, children=[
         # Header
-        dbc.Row(dbc.Col(html.H1("About ReLease!", className="text-center my-5"), width=12)),
+        dbc.Row(dbc.Col(html.H1("About Re-Lease!", className="text-center my-5"), width=12)),
 
         # Content Section
         dbc.Row(dbc.Col(

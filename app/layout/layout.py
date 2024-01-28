@@ -38,7 +38,8 @@ links = dbc.Nav(
                     dbc.NavLink(
                         "Login",
                         active=True,
-                        href="/log_in",
+                        href="/assets/login.html", #href="/assets/login.html", target="_blank"
+                        target="_blank",
                     ),
                     className="ms-2",
                 ),
