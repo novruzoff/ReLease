@@ -45,10 +45,10 @@ layout = html.Div([
 
                         # Submit Button
                         dbc.Col([
-                            dbc.Button('Log in', color='primary', className='my-3 fw-bold', style={'width':'450px', 'display': 'block', 'margin': 'auto'})
+                            dbc.Button('Log in', color='primary', className='my-3 fw-bold', style={'display': 'block', 'margin': 'auto'})
                         ])
 
-                    ], style={'display': 'block', 'margin': 'auto', 'width': '65vh', 'height': '55vh', 'backgroundColor': '#d3d3d3', 'borderRadius': '20px'})
+                    ], style={'display': 'block', 'margin': 'auto', 'width': '65vh', 'height': '55vh', 'backgroundColor': '#d3d3d3', 'borderRadius': '20px', 'margin-bottom': '10vh'})
                 ])
             ])
 ])
