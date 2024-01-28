@@ -13,156 +13,147 @@ dash.register_page(
     name="Create Your Listing",
 )
 
-layout = html.Div(
-    [
+layout = html.Div([
         dbc.Container(
             fluid=True,
             children=[
                 # Header
-                dbc.Row(
-                    [
+                dbc.Row([
                         dbc.Col(
                             html.H1(
                                 "Create Your Listing", className="text-center my-5"
                             ),
                             width=12,
                         )
-                    ]
-                ),
+                    ]),
+                
                 # Image row section
-                dbc.Row(
-                    [
-                        # Image upload section
-                        dbc.Col(
-                            html.Div(
-                                [
+                dbc.Row([
+                        
+                        # Image upload column
+                        dbc.Col(html.Div([
                                     dcc.Upload(
                                         id="upload-image",
-                                        children=html.Div(
-                                            [
+                                        children=html.Div([
                                                 "Drag and Drop or ",
-                                                html.A("Select Files"),
-                                            ]
-                                        ),
+                                                html.A("Select Files", className='fw-bold'),
+                                            ]),
                                         style={
                                             "width": "100%",
-                                            "height": "",
+                                            "padding": "auto",
                                             "lineHeight": "50vh",
                                             "borderWidth": "2px",
                                             "borderStyle": "dashed",
                                             "borderRadius": "5px",
                                             "textAlign": "center",
-                                            "marginLeft": "10px",
+                                            "marginLeft": "10px",                                        
                                         },
                                         # Allow multiple files to be uploaded
                                         multiple=True,
                                     ),
                                     html.Div(id="output-image-upload"),
-                                ]
-                            ),
-                            width=4,
+                                ]),
+                            width=4
                         ),
-                        # Listing information input
+                        
+                        # Listing information column
                         dbc.Col(
-                            html.Div(
-                                [
-                                    dbc.Label("Listing Title"),
+                            html.Div([
+                                    # Listing title input
+                                    dbc.Label("Listing Title", className='mb-3 fw-bold'),
                                     dbc.Input(
                                         type="text",
                                         style={
                                             "borderWidth": "2px",
                                             "borderColor": "grey",
                                         },
+                                        placeholder="Enter listing title"
                                     ),
-                                    dbc.Label("Price"),
+                                    
+                                    # Rent price input
+                                    dbc.Label("Rent Price", className='mb-3 mt-3 fw-bold'),
                                     dbc.Input(
                                         type="number",
                                         style={
                                             "borderWidth": "2px",
                                             "borderColor": "grey",
                                         },
+                                        placeholder="$"
                                     ),
-                                    dbc.Label("Address"),
+                                    
+                                    # Address input
+                                    dbc.Label("Address", className='mb-3 mt-3 fw-bold'),
                                     dbc.Input(
                                         type="text",
                                         style={
                                             "borderWidth": "2px",
                                             "borderColor": "grey",
                                         },
+                                        placeholder='Enter your address'
                                     ),
-                                    dbc.Label("Transfer Date"),
+                                    
+                                    # Transfer date input
+                                    dbc.Label("Transfer Date", className='d-inline-flex mr-4 mt-4 fw-bold'),
                                     dcc.DatePickerSingle(
                                         id="my-date-picker-single",
                                         min_date_allowed=date(2024, 1, 1),
                                         max_date_allowed=date(2050, 9, 19),
                                         initial_visible_month=date(2024, 1, 28),
                                         date=date(2024, 1, 28),
-                                        className="mt-4",
+                                        className="d-inline-flex m-4",
                                     ),
-                                    dbc.Label("Lease End Date"),
+                                    
+                                    # Lease end date input
+                                    dbc.Label("Lease End Date", className='d-inline-flex mr-4 mt-4 ml-6 fw-bold'),
                                     dcc.DatePickerSingle(
                                         id="my-date-picker-single",
                                         min_date_allowed=date(2024, 1, 1),
                                         max_date_allowed=date(2050, 9, 19),
                                         initial_visible_month=date(2024, 1, 28),
                                         date=date(2024, 1, 28),
-                                        className="mt-4",
+                                        className="d-inline-flex m-4",
                                     ),
-                                ]
-                            )
-                        ),
-                    ],
-                ),
+                                ], style={'marginLeft': '10px'})
+                        )
+                    ]),
+                
                 # Decription row section
-                dbc.Row(
-                    [
-                        dbc.Col(
-                            html.Div(
-                                [
+                dbc.Row([
+                        dbc.Col(html.Div([
                                     dbc.Label('Description'),
                                     dbc.Textarea(
-                                        className="mlb-3", placeholder="Briefly describe your listing"
+                                        placeholder="Briefly describe your listing",
+                                        style={'height': '200px',
+                                               'borderWidth': '2px',
+                                                'borderColor': 'grey'
+                                               }
+
                                     )
-                                ], style={'marginLeft': '10px', 'marginTop': '10px'}
-                            )
+                                ], style={'marginLeft': '10px', 'marginTop': '10px'})
                         )
-                    ]
-                ),
-            ],
-        )
-    ]
-)
+                ]),
 
+                # Contact information row section
+                dbc.Row([
+                        dbc.Col(html.Div([
+                                    dbc.Label('Contact Information'),
+                                    dbc.Textarea(
+                                        placeholder="Enter contact information",
+                                        style={'height': '75px',
+                                               'borderWidth': '2px',
+                                                'borderColor': 'grey'
+                                               }
 
-# Callback for image upload
-def parse_contents(contents, filename, date):
-    return html.Div(
-        [
-            html.H5(filename),
-            html.H6(datetime.datetime.fromtimestamp(date)),
-            # HTML images accept base64 encoded strings in the same format
-            # that is supplied by the upload
-            html.Img(src=contents),
-            html.Hr(),
-            html.Div("Raw Content"),
-            html.Pre(
-                contents[0:200] + "...",
-                style={"whiteSpace": "pre-wrap", "wordBreak": "break-all"},
-            ),
-        ]
-    )
-
-
-@callback(
-    Output("output-image-upload", "children"),
-    Input("upload-image", "contents"),
-    State("upload-image", "filename"),
-    State("upload-image", "last_modified"),
-)
-def update_output(list_of_contents, list_of_names, list_of_dates):
-    if list_of_contents is not None:
-        children = [
-            parse_contents(c, n, d)
-            for c, n, d in zip(list_of_contents, list_of_names, list_of_dates)
-        ]
-        return children
+                                    )
+                                ], style={'marginLeft': '10px', 'marginTop': '10px'})
+                        )
+                ]),
+                
+                # Submit button
+                dbc.Row([
+                    dbc.Col(html.Div([
+                        dbc.Button('Post Listing', color='primary', className='mt-4 mb-5 fw-bold fs-60')
+                    ], className='d-grid'))
+                ])
+        ])
+])
