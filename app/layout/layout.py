@@ -82,7 +82,7 @@ navbar = dbc.Navbar(
             ),
         ]
     ),
-    color="secondary",
+    color="dark",
     dark=True,
 )
 

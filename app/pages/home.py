@@ -1,27 +1,39 @@
 import dash
 from dash import Input, Output, html, callback
 import dash_bootstrap_components as dbc
-from layout import layout as com
+from server import functions as f
 
-dash.register_page(__name__, path='/', title='ReLease', name='ReLease')
+dash.register_page(__name__, path="/", title="ReLease", name="ReLease")
 
 
-layout = dbc.Container([
-    html.H1('Welcome!'),
-    html.Div('Browse our catalog of listings, from Montrealers to Montrealers'),
-    com.group
-    
-])
+layout = dbc.Container(
+    [
+        html.H1("Welcome!"),
+        html.Div("Browse our catalog of listings, from Montrealers to Montrealers"),
+        html.Div(id="cards")
+    ]
+)
+
 
 # in callback: get all documents, for every document create a card component and return it to the cardgroup children
-@callback(Output("cardgroup", "children"),[Input("cardgroup", "children")])
-def update_catalog(cardgroup):
-    # Here you should fetch the actual listings from a database or service.
-    # This function returns placeholder elements for demonstration.
-    # You would replace this with your actual data retrieval and processing.
-    return [
-        
-            com.card  # Add the card to the layout
-        
-        for _ in range(10)  # Replace with actual number of listings
-    ]
+@callback(Output("cards", "children"), [Input("cards", "children")])
+def update_catalog(cards):
+    cards = []
+    for doc in f.get_all_documents():
+        print(doc)
+        card = dbc.Card(
+                [
+                    dbc.CardHeader(doc["location"]),
+                    dbc.CardBody(
+                        [
+                            html.H5(doc["title"], className="card-title"),
+                            html.P(
+                                doc["description"],
+                                className="card-text",
+                            ),
+                        ]
+                    ),
+                ]
+            )
+        cards.append(card)
+    return cards
