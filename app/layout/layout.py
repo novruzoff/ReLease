@@ -42,7 +42,7 @@ links = dbc.Nav(
                     class_name="fa-brands fa-github fa-xl",
                     style={"color": "#4582ec"},
                 ),
-                className="ms-2",   
+                className="ms-2",
                 width="auto",
             ),
         ],
@@ -60,10 +60,11 @@ navbar = dbc.Navbar(
         [
             html.A(
                 dbc.Row(
-                    [  
+                    [
                         dbc.Col(
                             dbc.NavbarBrand(
-                                html.Img(src="/assets/mainlogo.png", height="60px"),href="/"
+                                html.Img(src="/assets/mainlogo.png", height="60px"),
+                                href="/",
                             )
                         ),
                     ],
@@ -86,28 +87,17 @@ navbar = dbc.Navbar(
     dark=True,
 )
 
-card_body = dbc.CardBody(
-    [
-        html.H4("Card title", className="card-title"),
-        html.P(
-            "This is some card content that we'll reuse",
-            className="card-text",
-        ),
-    ]
-)
 
 card = dbc.Card(
     children=[
         dbc.CardImg(
-            src="https://storage.cloud.google.com/release_bucket/images/10.jpg", #temp
+            src="https://storage.cloud.google.com/release_bucket/images/10.jpg",  # temp
             top=True,
         ),
-        card_body,
+        # card_body,
     ],
     color="secondary",
     inverse=True,
 )
-
-group = dbc.CardGroup([], id="cardgroup", className="card-group")
 
 filter_menu = dbc.Container([])

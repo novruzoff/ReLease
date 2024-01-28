@@ -10,30 +10,33 @@ layout = dbc.Container(
     [
         html.H1("Welcome!"),
         html.Div("Browse our catalog of listings, from Montrealers to Montrealers"),
-        html.Div(id="cards")
+        html.Div(id="cards"),
     ]
 )
 
-
-# in callback: get all documents, for every document create a card component and return it to the cardgroup children
 @callback(Output("cards", "children"), [Input("cards", "children")])
 def update_catalog(cards):
     cards = []
     for doc in f.get_all_documents():
         print(doc)
         card = dbc.Card(
-                [
-                    dbc.CardHeader(doc["location"]),
-                    dbc.CardBody(
-                        [
-                            html.H5(doc["title"], className="card-title"),
-                            html.P(
-                                doc["description"],
-                                className="card-text",
-                            ),
-                        ]
-                    ),
-                ]
-            )
+            [
+                dbc.CardImg(src=doc['image'], top=True),
+                dbc.CardBody(
+                    [
+                        html.H4(doc["title"], className="card-title"),
+                        html.H5(doc["location"], className="card-text"),
+                        html.P(
+                            doc["description"],
+                            className="card-text",
+                        ),
+                        dbc.Button("See more", color="info"), # add link to the individual listing page
+                    ]
+                ),
+            ],
+            style={"width": "18rem"},
+            color="secondary",
+            inverse=True,
+        )
         cards.append(card)
     return cards
